@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | TravelBloom</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            margin: 0;
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                linear-gradient(rgba(4, 35, 43, 0.62), rgba(4, 35, 43, 0.62)),
+                url("https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=2000&q=85")
+                center / cover fixed;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            min-height: 64px;
+            padding: 0.75rem 1.75rem;
+            background: rgba(18, 52, 59, 0.95);
+        }
+        .brand {
+            margin-right: auto;
+            color: #fff;
+            font-size: 1.5rem;
+            font-style: italic;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            margin: 0 auto;
+            padding-right: 12rem;
+        }
+        .nav-links a {
+            color: #fff;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .nav-links a:hover, .nav-links a:focus-visible,
+        .nav-links a[aria-current="page"] { color: #8edbd4; }
+        .contact-page {
+            display: grid;
+            grid-template-columns: 1fr minmax(320px, 520px);
+            gap: 5rem;
+            align-items: center;
+            width: min(1120px, 90%);
+            min-height: calc(100vh - 64px);
+            margin: 0 auto;
+            padding: 3rem 0;
+        }
+        .contact-intro h1 {
+            margin: 0 0 1rem;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            line-height: 1;
+            text-transform: uppercase;
+        }
+        .contact-intro p {
+            margin: 0;
+            font-size: 1.25rem;
+        }
+        .contact-form {
+            display: grid;
+            gap: 1.25rem;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 0.5rem;
+            background: rgba(4, 35, 43, 0.78);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+        }
+        .form-field {
+            display: grid;
+            gap: 0.5rem;
+        }
+        .form-field label { font-weight: 700; }
+        .form-field input, .form-field textarea {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            border-radius: 0.35rem;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.08);
+            font: inherit;
+        }
+        .form-field textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        .form-field input::placeholder, .form-field textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .form-field input:focus, .form-field textarea:focus {
+            border-color: #8edbd4;
+            outline: 2px solid rgba(142, 219, 212, 0.35);
+        }
+        .submit-button {
+            padding: 0.9rem 1.5rem;
+            border: 0;
+            border-radius: 0.35rem;
+            color: #fff;
+            background: #087c75;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .submit-button:hover, .submit-button:focus-visible { background: #0a625e; }
+        @media (max-width: 800px) {
+            .navbar { flex-wrap: wrap; gap: 1rem; }
+            .nav-links { width: 100%; margin: 0; padding: 0; justify-content: center; }
+            .contact-page { grid-template-columns: 1fr; gap: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" aria-label="Main navigation">
+        <a class="brand" href="travel_recommendation.html">✈ TravelBloom</a>
+        <div class="nav-links">
+            <a href="travel_recommendation.html">Home</a>
+            <a href="aboutus.html">About Us</a>
+            <a href="contact.html" aria-current="page">Contact Us</a>
+        </div>
+    </nav>
+
+    <main class="contact-page">
+        <section class="contact-intro">
+            <h1>Contact Us</h1>
+            <p>Get in touch—we would love to hear from you.</p>
+        </section>
+
+        <form class="contact-form" action="#" method="post">
+            <div class="form-field">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Enter your name" required>
+            </div>
+            <div class="form-field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-field">
+                <label for="message">Message</label>
+                <textarea
+                    id="message"
+                    name="message"
+                    placeholder="Enter your message"
+                    required
+                ></textarea>
+            </div>
+            <button class="submit-button" type="submit">Submit</button>
+        </form>
+    </main>
+</body>
+</html>

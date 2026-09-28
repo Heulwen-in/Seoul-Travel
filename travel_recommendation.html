@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelBloom</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: Arial, Helvetica, sans-serif; }
+        .navbar {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            min-height: 64px;
+            padding: 0.75rem 1.75rem;
+            color: #fff;
+            background: #12343b;
+        }
+        .brand {
+            margin-right: auto;
+            color: #fff;
+            font-size: 1.5rem;
+            font-style: italic;
+            font-weight: 700;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .nav-links { display: flex; gap: 1.75rem; }
+        .nav-links a { color: #fff; font-weight: 600; text-decoration: none; }
+        .nav-links a:hover, .nav-links a:focus-visible { color: #8edbd4; }
+        .search-form {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.5rem 0.4rem 1rem;
+            border-radius: 2rem;
+            background: #fff;
+        }
+        .search-form input {
+            width: min(20rem, 30vw);
+            border: 0;
+            outline: 0;
+            font-size: 0.9rem;
+        }
+        .search-form button {
+            padding: 0.55rem 1rem;
+            border: 0;
+            border-radius: 0.5rem;
+            color: #fff;
+            background: #168b87;
+            cursor: pointer;
+        }
+        .search-form button:hover, .search-form button:focus-visible {
+            background: #0f6f6c;
+        }
+        .hero {
+            position: relative;
+            display: flex;
+            align-items: center;
+            min-height: calc(100vh - 64px);
+            padding: 4rem 7%;
+            color: #fff;
+            background:
+                linear-gradient(90deg, rgba(4, 35, 43, 0.88), rgba(4, 35, 43, 0.18)),
+                url("https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=2000&q=85")
+                center / cover no-repeat;
+        }
+        .hero-content {
+            max-width: 680px;
+            margin-left: 3rem;
+        }
+        .hero h1 {
+            max-width: 620px;
+            margin: 0 0 1.5rem;
+            font-size: clamp(3rem, 7vw, 6rem);
+            line-height: 0.95;
+            text-transform: uppercase;
+        }
+        .hero p {
+            max-width: 570px;
+            margin: 0 0 2rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+        .book-button {
+            display: inline-block;
+            padding: 0.85rem 1.5rem;
+            border-radius: 0.3rem;
+            color: #fff;
+            background: #087c75;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .book-button:hover, .book-button:focus-visible { background: #0a625e; }
+        .social-links {
+            position: absolute;
+            left: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.4rem;
+        }
+        .social-links::before {
+            width: 2px;
+            height: 90px;
+            background: rgba(255, 255, 255, 0.75);
+            content: "";
+        }
+        .social-links a {
+            display: grid;
+            width: 2rem;
+            height: 2rem;
+            place-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .social-links a:hover, .social-links a:focus-visible {
+            color: #12343b;
+            background: #fff;
+        }
+        .recommendation-results {
+            position: absolute;
+            top: 2rem;
+            right: 4%;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+            width: min(820px, 82%);
+            max-height: calc(100% - 4rem);
+            overflow-y: auto;
+        }
+        .results-heading {
+            grid-column: 1 / -1;
+            margin: 0;
+            color: #fff;
+            font-size: 2rem;
+        }
+        .hero.showing-results .hero-content { visibility: hidden; }
+        .recommendation-card {
+            overflow: hidden;
+            border-radius: 0.5rem;
+            color: #17383e;
+            background: #fff;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        .recommendation-card img {
+            display: block;
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .recommendation-content { padding: 1rem; }
+        .recommendation-content h2 { margin: 0 0 0.5rem; font-size: 1.25rem; }
+        .recommendation-content p { margin: 0 0 1rem; font-size: 0.9rem; line-height: 1.45; }
+        .recommendation-content .local-time {
+            padding-top: 0.75rem;
+            border-top: 1px solid #d8e3e5;
+            color: #087c75;
+            font-weight: 700;
+        }
+        .recommendation-content button {
+            padding: 0.55rem 1rem;
+            border: 0;
+            border-radius: 0.3rem;
+            color: #fff;
+            background: #087c75;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .results-message {
+            grid-column: 1 / -1;
+            margin: 0;
+            padding: 1rem;
+            border-radius: 0.4rem;
+            color: #17383e;
+            background: #fff;
+        }
+        @media (max-width: 800px) {
+            .navbar { flex-wrap: wrap; gap: 1rem; }
+            .search-form { width: 100%; }
+            .search-form input { flex: 1; width: auto; }
+            .hero { min-height: calc(100vh - 120px); padding: 4rem 1.5rem; }
+            .hero-content { margin-left: 0; }
+            .social-links {
+                position: static;
+                flex-direction: row;
+                margin-top: 2.5rem;
+            }
+            .social-links::before { display: none; }
+            .recommendation-results {
+                position: static;
+                grid-template-columns: 1fr;
+                width: 100%;
+                max-height: none;
+                margin-top: 2rem;
+            }
+            .hero.showing-results .hero-content { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" aria-label="Main navigation">
+        <a class="brand" href="travel_recommendation.html">✈ TravelBloom</a>
+        <div class="nav-links">
+            <a href="travel_recommendation.html">Home</a>
+            <a href="aboutus.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+        <form class="search-form" role="search">
+            <input
+                id="recommendation-search"
+                name="search"
+                type="search"
+                placeholder="Enter a destination or keyword"
+                aria-label="Search travel recommendations"
+            >
+            <button id="search-button" type="submit">Search</button>
+            <button id="reset-button" type="reset">Reset</button>
+        </form>
+    </nav>
+    <main id="home" class="hero">
+        <div class="hero-content">
+            <h1>Explore dream destinations</h1>
+            <p>
+                Discover unforgettable places, vibrant cultures, and inspiring
+                experiences around the world. Search for personalized travel
+                recommendations and begin planning your next adventure today.
+            </p>
+            <a class="book-button" href="#recommendation-search">Book Now</a>
+        </div>
+
+        <aside class="social-links" aria-label="Social media">
+            <a href="https://twitter.com" aria-label="Twitter">X</a>
+            <a href="https://facebook.com" aria-label="Facebook">f</a>
+            <a href="https://instagram.com" aria-label="Instagram">◎</a>
+            <a href="https://youtube.com" aria-label="YouTube">▶</a>
+        </aside>
+
+        <section
+            id="recommendation-results"
+            class="recommendation-results"
+            aria-live="polite"
+            aria-label="Travel recommendations"
+        ></section>
+    </main>
+    <script src="travel_recommendation.js"></script>
+</body>
+</html>

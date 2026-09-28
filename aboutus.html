@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | TravelBloom</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            margin: 0;
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                linear-gradient(rgba(4, 35, 43, 0.65), rgba(4, 35, 43, 0.65)),
+                url("https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=2000&q=85")
+                center / cover fixed;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            min-height: 64px;
+            padding: 0.75rem 1.75rem;
+            background: rgba(18, 52, 59, 0.95);
+        }
+        .brand {
+            margin-right: auto;
+            color: #fff;
+            font-size: 1.5rem;
+            font-style: italic;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            margin: 0 auto;
+            padding-right: 12rem;
+        }
+        .nav-links a {
+            color: #fff;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .nav-links a:hover, .nav-links a:focus-visible,
+        .nav-links a[aria-current="page"] { color: #8edbd4; }
+        .about-page {
+            width: min(1120px, 90%);
+            margin: 0 auto;
+            padding: 3rem 0 4rem;
+        }
+        h1 {
+            margin: 0 0 1.5rem;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            line-height: 1;
+            text-transform: uppercase;
+        }
+        .company-info {
+            padding: 1.5rem;
+            border-left: 5px solid #16a39d;
+            border-radius: 0.4rem;
+            background: rgba(4, 35, 43, 0.78);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        .company-info p { margin: 0 0 0.8rem; }
+        .company-info p:last-child { margin-bottom: 0; }
+        .team-section {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin-top: 2rem;
+            padding: 2rem;
+            border-radius: 0.4rem;
+            background: rgba(4, 35, 43, 0.78);
+        }
+        .team-section h2 {
+            margin: 0;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1;
+        }
+        .team-members {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .team-card {
+            padding: 1.5rem 1rem;
+            text-align: center;
+        }
+        .avatar {
+            display: grid;
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1rem;
+            place-items: center;
+            border-radius: 50%;
+            color: #12343b;
+            background: #fff;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .team-card h3 { margin: 0 0 0.5rem; font-size: 1.25rem; }
+        .team-card p { min-height: 3em; margin: 0 0 1rem; line-height: 1.5; }
+        .role {
+            display: inline-block;
+            padding: 0.55rem 1rem;
+            border-radius: 0.4rem;
+            background: #087c75;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+        @media (max-width: 800px) {
+            .navbar { flex-wrap: wrap; gap: 1rem; }
+            .nav-links { width: 100%; margin: 0; padding: 0; justify-content: center; }
+            .team-section { grid-template-columns: 1fr; }
+            .team-members { grid-template-columns: 1fr; }
+            .team-section h2 { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" aria-label="Main navigation">
+        <a class="brand" href="travel_recommendation.html">✈ TravelBloom</a>
+        <div class="nav-links">
+            <a href="travel_recommendation.html">Home</a>
+            <a href="aboutus.html" aria-current="page">About Us</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </nav>
+
+    <main class="about-page">
+        <h1>About Us</h1>
+
+        <section class="company-info" aria-labelledby="company-heading">
+            <h2 id="company-heading">Welcome to TravelBloom</h2>
+            <p>
+                We are a team of passionate travelers dedicated to helping people
+                discover remarkable destinations and create lasting memories.
+                Our recommendations make exploring the world simple, inspiring,
+                and personal.
+            </p>
+            <p>
+                We value integrity, curiosity, customer satisfaction, and teamwork.
+                Whether you seek a relaxing beach, an exciting city, or a cultural
+                adventure, TravelBloom is here to guide your journey.
+            </p>
+        </section>
+
+        <section class="team-section" aria-labelledby="team-heading">
+            <h2 id="team-heading">Our<br>Team</h2>
+            <div class="team-members">
+                <article class="team-card">
+                    <div class="avatar" aria-hidden="true">JD</div>
+                    <h3>John Doe</h3>
+                    <p>Sets the company vision and leads our overall strategy.</p>
+                    <span class="role">Chief Executive Officer</span>
+                </article>
+                <article class="team-card">
+                    <div class="avatar" aria-hidden="true">CT</div>
+                    <h3>Celina Thomas</h3>
+                    <p>Leads our technology team and digital experiences.</p>
+                    <span class="role">Technology Lead</span>
+                </article>
+                <article class="team-card">
+                    <div class="avatar" aria-hidden="true">MT</div>
+                    <h3>Mike Tyson</h3>
+                    <p>Manages project delivery and client relationships.</p>
+                    <span class="role">Delivery Head</span>
+                </article>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
